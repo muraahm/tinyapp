@@ -42,11 +42,13 @@ app.get("/hello", (req, res) => {
 });
 
 app.post("/urls", (req, res) => {
-  console.log(req.body);  // Log the POST request body to the console
-  res.send("Ok");         // Respond with 'Ok' (we will replace this)
+  let generatedShortID = generateRandomString();
+  urlDatabase[generatedShortID] = req.body["longURL"];
+  // console.log(urlDatabase);
+  res.redirect('/urls/' + generatedShortID);
 });
 
-function generateRandomString() {
+function generateRandomString() { // from stackoverflow
   let result = '';
   let characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
   let charactersLength = characters.length;
