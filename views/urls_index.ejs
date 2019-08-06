@@ -9,6 +9,8 @@
   <title>TinyApp</title>
 </head>
 <body>
+  <style>
+    </style>
   <header>
     <% include ./partials/_header %>
   </header>
@@ -17,8 +19,9 @@
     <table class="table">
       <thead>
         <tr>
-          <th scope="col">Short URL</th>
+          <th scope="col">Short URL</th> 
           <th scope="col">Long URL</th>
+          <th scope="col">Delete</th>
         </tr>
       </thead>
       <tbody>
@@ -26,6 +29,9 @@
           <tr>
             <td><%= url %></td>
             <td><%= urls[url] %></td>
+            <td>
+              <button class="btn btn-outline-danger">Delete</button>
+            </td>
           </tr>
         <% } %>
       </tbody>
