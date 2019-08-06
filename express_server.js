@@ -44,7 +44,6 @@ app.get("/hello", (req, res) => {
 app.post("/urls", (req, res) => {
   let generatedShortID = generateRandomString();
   urlDatabase[generatedShortID] = req.body["longURL"];
-  // console.log(urlDatabase);
   res.redirect('/urls/' + generatedShortID);
 });
 
@@ -57,3 +56,9 @@ function generateRandomString() { // from stackoverflow
   }
   return result;
 };
+
+app.get("/u/:shortURL", (req, res) => {
+  console.log(req.params.shortURL);
+  const longURL = urlDatabase[req.params.shortURL];
+  res.redirect(longURL);
+});
