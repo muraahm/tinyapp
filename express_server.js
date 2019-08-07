@@ -12,6 +12,51 @@ const urlDatabase = {
   "9sm5xK": "http://www.google.com"
 };
 
+const users = { 
+  "userRandomID": {
+    id: "userRandomID", 
+    email: "user@example.com", 
+    password: "purple-monkey-dinosaur"
+  },
+ "user2RandomID": {
+    id: "user2RandomID", 
+    email: "user2@example.com", 
+    password: "dishwasher-funk"
+  }
+};
+
+app.get("/register", (req, res) => {
+  let templateVars = {username: req.cookies["username"]};
+res.render("urls_register", templateVars);
+});
+
+
+const checkEmail = function(emailCheck, objCheck) {
+  for (let userID in objCheck) {
+    if (emailCheck === objCheck[userID]["email"]) {
+      return true;
+    }
+  }
+  return false;
+};
+
+app.post("/register", (req, res) => {
+  if (!req.body["password"] || !req.body["email"]) {
+    res.status(400).send('fill out all fields');
+  }
+  if (checkEmail(req.body["email"], users)) {
+    res.status(400).send('email address has already been registered');
+  }
+  let newUserID = generateRandomString();
+  users[newUserID] = {};
+  users[newUserID].id = newUserID;
+  users[newUserID].email = req.body["email"];
+  users[newUserID].password = req.body["password"];
+  //console.log(users);
+  res.cookie('user_id', newUserID);
+  res.redirect('/urls');
+});
+
 app.get("/urls/new", (req, res) => {
   let templateVars = {username: req.cookies["username"]};
   res.render("urls_new", templateVars);
@@ -39,6 +84,7 @@ app.post("/urls/:shortURL/delete", (req, res) => {
 });
 
 app.get("/urls/:shortURL", (req, res) => {
+  //console.log("hello");
   let templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL], username: req.cookies["username"] };
   res.render("urls_show", templateVars);
 });
