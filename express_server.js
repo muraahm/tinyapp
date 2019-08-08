@@ -58,9 +58,9 @@ app.get("/urls/new", (req, res) => {
   res.render("urls_new", templateVars);
 });
 
-app.post('/login', (req, res) => {
+app.post("/login", (req, res) => {
   res.cookie("username", req.body["username"]);
-  res.redirect('/urls');
+  res.redirect("/urls")
 });
 
 app.post('/logout', (req, res) => {
