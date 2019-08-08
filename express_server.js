@@ -13,7 +13,14 @@ const urlDatabase = {
 };
 
 app.get("/register", (req, res) => {
-  let templateVars = { username: req.cookies["username"] };
+  let user_id = null;
+  if (req.cookies["user_id"]) {
+    user_id = req.cookies["user_id"]
+  }
+  if (!req.cookies["user_id"]) {
+    user_id = null;
+  }
+  let templateVars = { user_id: user_id };
   res.render("urls_register", templateVars)
 });
 
@@ -44,7 +51,7 @@ app.post("/register", (req, res) => {
     res.status(400).send('email address has already been registered');
   }
 
-    let newUserID = generateRandomString();
+  let newUserID = generateRandomString();
   users[newUserID] = {};
   users[newUserID].id = newUserID;
   users[newUserID].email = req.body["email"];
@@ -54,23 +61,38 @@ app.post("/register", (req, res) => {
 });
 
 app.get("/urls/new", (req, res) => {
-  let templateVars = {username: req.cookies["username"]};
+  let user_id = null;
+  if (req.cookies["user_id"]) {
+    user_id = req.cookies["user_id"]
+  }
+  if (!req.cookies["user_id"]) {
+    user_id = null;
+  }
+  let templateVars = { user_id: user_id };
   res.render("urls_new", templateVars);
 });
 
 app.post("/login", (req, res) => {
-  res.cookie("username", req.body["username"]);
+
   res.redirect("/urls")
 });
 
 app.post('/logout', (req, res) => {
-  res.clearCookie('username');
+  res.clearCookie('user_id');
   res.redirect('/urls');
-}); 
+});
 
 app.get("/urls", (req, res) => {
-  let templateVars = {urls: urlDatabase, username: req.cookies["username"]
-};
+  let user_id = null;
+  if (req.cookies["user_id"]) {
+    user_id = req.cookies["user_id"]
+  }
+  if (!req.cookies["user_id"]) {
+    user_id = null;
+  }
+  let templateVars = {
+    urls: urlDatabase, user_id: user_id
+  };
   res.render("urls_index", templateVars);
 });
 
@@ -80,7 +102,14 @@ app.post("/urls/:shortURL/delete", (req, res) => {
 });
 
 app.get("/urls/:shortURL", (req, res) => {
-  let templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL], username: req.cookies["username"] };
+  let user_id = null;
+  if (req.cookies["user_id"]) {
+    user_id = req.cookies["user_id"]
+  }
+  if (!req.cookies["user_id"]) {
+    user_id = null;
+  }
+  let templateVars = { shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL], user_id: req.cookies["username"] };
   res.render("urls_show", templateVars);
 });
 
