@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 });
 
 app.get("/register", (req, res) => {
+  //console.log('register GET route');
   let templateVars = { user: req.user };
   res.render("urls_register", templateVars)
 });
@@ -43,6 +44,7 @@ const checkEmail = function (emailCheck, objCheck) {
 };
 
 app.post("/register", (req, res) => {
+  //console.log('register POST route');
   if (!req.body.email || !req.body.password) {
     res.status(400);
     return res.send('400 Bad Request');
@@ -62,20 +64,25 @@ app.post("/register", (req, res) => {
 });
 
 app.get("/urls/new", (req, res) => {
-  if (req.cookies["user_id"]){
-  let templateVars = { user: req.cookies["user_id"] };
-  res.render("urls_new", templateVars);}
+  //console.log('/urls/new GET route');
+  if (req.cookies["user_id"]) {
+    let templateVars = { user: req.cookies["user_id"] };
+    res.render("urls_new", templateVars);
+  }
   else {
-    res.redirect("/login")}
+    res.redirect("/login")
+  }
 });
 
 app.get("/login", (req, res) => {
+  //console.log("app.get('/login', (req, res) => {");
 
   let templateVars = { user: req.user };
   res.render("urls_login", templateVars);
 });
 
 app.post("/login", (req, res) => {
+  //console.log("app.post('/login', (req, res) => {");
   if (!req.body.email || !req.body.password) {
     res.status(400);
     return res.send('400 Bad Request');
@@ -93,11 +100,13 @@ app.post("/login", (req, res) => {
 });
 
 app.post('/logout', (req, res) => {
+  //console.log("app.post('/logout', (req, res) => {");
   res.clearCookie('user_id');
   res.redirect('/urls');
 });
 
 app.get("/urls", (req, res) => {
+  //console.log("app.get(['/urls', (req, res) => {");
 
   let templateVars = {
     urls: urlDatabase, user: req.user
@@ -106,11 +115,13 @@ app.get("/urls", (req, res) => {
 });
 
 app.post("/urls/:shortURL/delete", (req, res) => {
+  //console.log("app.post('/urls/:shortURL/delete', (req, res) => {");
   delete urlDatabase[req.params.shortURL]
   res.redirect('/urls/');
 });
 
 app.get("/urls/:shortURL", (req, res) => {
+  //console.log("app.get('/urls/:shortURL', (req, res) => {");
 
   let templateVars = {
     shortURL: req.params.shortURL, longURL: urlDatabase[req.params.shortURL],
@@ -121,25 +132,30 @@ app.get("/urls/:shortURL", (req, res) => {
 
 
 app.get("/", (req, res) => {
+  //console.log("app.get('/', (req, res) => {");
   res.send("Hello!");
 });
 
 app.listen(PORT, () => {
+  //console.log("app.listen(PORT, () => {");
   console.log(`Example app listening on port ${PORT}!`);
 });
 
 app.get("/urls.json", (req, res) => {
+  //console.log("app.get('/urls.json', (req, res) => {");
   res.json(urlDatabase);
 });
 
 app.get("/hello", (req, res) => {
+  //console.log("app.get('/hello', (req, res) => {");
   res.send("<html><body>Hello <b>World</b></body></html>\n");
 });
 
 app.post("/urls", (req, res) => {
   let generatedShortID = generateRandomString();
-  urlDatabase[generatedShortID] = req.body["longURL"];
-  res.redirect('/urls/' + generatedShortID);
+  urlDatabase[generatedShortID] = { longURL: req.body["longURL"], userID: req.cookies["user_id"] };
+  //console.log(urlDatabase[generatedShortID]);
+  res.redirect('/urls/' + urlDatabase[generatedShortID]);
 });
 
 function generateRandomString() { // from stackoverflow
@@ -153,6 +169,7 @@ function generateRandomString() { // from stackoverflow
 };
 
 app.get("/u/:shortURL", (req, res) => {
+  //console.log("app.get('/u/:shortURL', (req, res) => {");
   console.log(req.params.shortURL);
   const longURL = urlDatabase[req.params.shortURL];
   res.redirect(longURL);
