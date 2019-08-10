@@ -36,8 +36,7 @@
           <!--table data-->
           <td><%= urls[url].longURL %></td>
           <td>
-            <form method="GET" action="/urls/<%= url %>">
-              <button type="submit" class="btn btn-outline-primary">Edit</button>
+            <a href= "/urls/<%= url %>"class="btn btn-outline-primary">Edit</a>
             </form>
           <td>
             <form method="POST" action="/urls/<%= url %>/delete"><button class="btn btn-outline-danger">Delete</button>
