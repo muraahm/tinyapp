@@ -7,9 +7,9 @@ Created during Lighthouse labs Web Development BootCamp.
 
 ![Image description](https://github.com/muraahm/tinyapp/blob/master/screenshots%20in%20readme/Screen%20Shot%202019-08-09%20at%2011.31.41%20PM.png)
 
-/Users/macbookpro/lighthouse/w3/tinyapp/screenshots in readme/Screen Shot 2019-08-09 at 11.32.26 PM.png
+![Image description]()
 
-/Users/macbookpro/lighthouse/w3/tinyapp/screenshots in readme/Screen Shot 2019-08-09 at 11.32.45 PM.png
+![Image description]()
 
 ## Dependencies
 
