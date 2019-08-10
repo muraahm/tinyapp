@@ -5,8 +5,11 @@ Created during Lighthouse labs Web Development BootCamp.
 
 ## Final Product
 
-!["screenshot description"](#)
-!["screenshot description"](#)
+/Users/macbookpro/lighthouse/w3/tinyapp/screenshots in readme/Screen Shot 2019-08-09 at 11.31.41 PM.png
+
+/Users/macbookpro/lighthouse/w3/tinyapp/screenshots in readme/Screen Shot 2019-08-09 at 11.32.26 PM.png
+
+/Users/macbookpro/lighthouse/w3/tinyapp/screenshots in readme/Screen Shot 2019-08-09 at 11.32.45 PM.png
 
 ## Dependencies
 
