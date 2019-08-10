@@ -1,19 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  ​
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
-    integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <title>TinyApp</title>
-</head>
-
-<body>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>New URL - TinyApp Example</title>
+  </head>
+  <body>
   <header>
-    <% include ./partials/_header %>
+      <% include ./partials/_header %>
   </header>
   <main style="margin: 1em;">
     <% if (user) { %>
@@ -21,7 +17,6 @@
     <table class="table">
       <thead>
         <tr>
-          <!--table row-->
           <th scope="col">Short URL</th>
           <th scope="col">Long URL</th>
           <th scope="col">Edit</th>
@@ -30,10 +25,8 @@
       </thead>
       <tbody>
         <% for(let url in urls) { %>
-        <!--allows us to use JS-->
         <tr>
           <td><%= url %></td>
-          <!--table data-->
           <td><%= urls[url].longURL %></td>
           <td>
             <a href= "/urls/<%= url %>"class="btn btn-outline-primary">Edit</a>

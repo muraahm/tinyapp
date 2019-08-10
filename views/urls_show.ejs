@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <!-- Bootstrap CSS -->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
-  <title>URL - TinyApp Example</title>
-</head>
-​
-<body>
-    <header>
-        <% include ./partials/_header %>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <title>New URL - TinyApp Example</title>
+  </head>
+  <body>
+  <header>
+      <% include ./partials/_header %>
     </header>
   <div class="card text-center">
       <div class="card-header"></div>
@@ -19,7 +20,7 @@
     <div class="card-footer text-muted"></div>
   </div>
   <h3 class="card-title">Edit</h3>
-  <form class="form-inline" action="/urls/<%= shortURL %>" method="POST"> <!--action = going to, POST = type of request were going to send-->
+  <form class="form-inline" action="/urls/<%= shortURL %>" method="POST">
     <div class="form-group mb-2">
       <label for="longURL">New URL:</label>
       <input class="form-control" type="url" name="longURL" placeholder="http://" style="width: 300px; margin: 1em">
