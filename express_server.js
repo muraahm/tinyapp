@@ -3,7 +3,7 @@ const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
 const bcrypt = require('bcrypt');
-const PORT = 8080; // default port 8080
+const PORT = process.env.PORT || 8080;
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set("view engine", "ejs");
 const cookieSession = require('cookie-session');
@@ -130,6 +130,14 @@ app.post('/logout', (req, res) => {
   req.session = null;
   res.redirect('/urls');
 });
+
+app.get("/", (req, res) => {
+  let templateVars = {
+    urls: urlsForUser(req.user_id, urlDatabase), user: req.user
+  };
+  res.render("urls_index", templateVars);
+});
+
 
 app.get("/urls", (req, res) => {
   let templateVars = {
